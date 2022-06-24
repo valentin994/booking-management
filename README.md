@@ -15,8 +15,7 @@ For the database SQLite will be used.
 
 ## Todos
 
-- Add pre-commit.yaml
-- Add Database(sqlite)
+- Fix pylint warnings
 - Create Models Booking/Comments
 - Create CRUD for Bookings
 - Create Routes for Bookings
@@ -24,6 +23,7 @@ For the database SQLite will be used.
 - Create Routes for Comments
 - Create Tests
 - Add tests and coverage to pre-commit
+- Add alembic
 
 ## Possible enchantments
 

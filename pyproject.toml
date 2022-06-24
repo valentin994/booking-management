@@ -58,7 +58,6 @@ profile = "black"
   disable = [
       "arguments-differ",
       "attribute-defined-outside-init",
-      "bad-continuation",
       "blacklisted-name",
       "import-error",
       "no-member",
@@ -84,15 +83,12 @@ profile = "black"
       "reimported",
       "too-many-ancestors",
       "unexpected-special-method-signature",
-      "old-raise-syntax",
       # Black handles formatting
       "format",
       # Disable failure for TODO items in the codebase (code will always have TODOs).
       "fixme",
       # Disable docstrings checks as we don't require excessive documentation.
       "missing-docstring",
-      # Disable checking that method could be a function in classes (often used for organisation).
-      "no-self-use",
       # Many functions (e.g. callbacks) will naturally have unused arguments.
       "unused-argument",
       # Similar lines in files (often the case in tests).
@@ -113,6 +109,8 @@ readme = "README.md"
 python = "^3.10"
 fastapi = "^0.78.0"
 pre-commit = "^2.19.0"
+SQLAlchemy = "^1.4.38"
+pylint = "^2.14.3"
 
 
 [build-system]
