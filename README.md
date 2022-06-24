@@ -21,3 +21,8 @@ For the database SQLite will be used.
 - Create Routes for Bookings
 - Create CRUD for Comments
 - Create Routes for Comments
+
+
+## Possible enchantments
+
+- Auto mail response after booking
