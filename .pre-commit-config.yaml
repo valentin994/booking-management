@@ -11,3 +11,22 @@ repos:
     hooks:
     -   id: black
         args : [--config=/pyproject.toml]
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        args : [--settings-path=/pyproject.toml]
+-   repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+            [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=/pyproject.toml", # Link to your config file
+            ]

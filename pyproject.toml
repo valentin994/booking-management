@@ -26,6 +26,82 @@ exclude = '''
 )
 '''
 
+# Isort
+
+[tool.isort]
+py_version=39
+ensure_newline_before_comments = true
+known_first_party = ["app"]
+line_length = 79
+lines_after_imports = 2
+profile = "black"
+
+# Pylint section
+[tool.pylint]
+  [tool.pylint.master]
+   ignore=["venv"]
+   load-plugins = [
+     "pylint.extensions.docparams",
+     "pylint.extensions.mccabe",
+     "pylint.extensions.check_elif",
+     "pylint.extensions.bad_builtin",
+     "pylint.extensions.code_style",
+     "pylint.extensions.overlapping_exceptions",
+     "pylint.extensions.redefined_variable_type",
+     "pylint.extensions.typing"
+   ]
+  [tool.pylint.format]
+  max-line-length = "79"
+
+  [tool.pylint.messages_control]
+  # Disable some noisy/annoying defaults of Pylint
+  disable = [
+      "arguments-differ",
+      "attribute-defined-outside-init",
+      "bad-continuation",
+      "blacklisted-name",
+      "import-error",
+      "no-member",
+      "no-name-in-module",
+      "protected-access",
+      "stop-iteration-return",
+      "too-few-public-methods",
+      "too-many-arguments",
+      "too-many-branches",
+      "too-many-instance-attributes",
+      "too-many-lines",
+      "too-many-locals",
+      "too-many-return-statements",
+      "too-many-statements",
+      "abstract-method",
+      "chained-comparison",
+      "eval-used",
+      "exec-used",
+      "expression-not-assigned",
+      "global-statement",
+      "redefined-argument-from-local",
+      "redefined-outer-name",
+      "reimported",
+      "too-many-ancestors",
+      "unexpected-special-method-signature",
+      "old-raise-syntax",
+      # Black handles formatting
+      "format",
+      # Disable failure for TODO items in the codebase (code will always have TODOs).
+      "fixme",
+      # Disable docstrings checks as we don't require excessive documentation.
+      "missing-docstring",
+      # Disable checking that method could be a function in classes (often used for organisation).
+      "no-self-use",
+      # Many functions (e.g. callbacks) will naturally have unused arguments.
+      "unused-argument",
+      # Similar lines in files (often the case in tests).
+      "duplicate-code",
+      # Disable for now as Python's/Pylint community consensus is divided.
+      # https://github.com/PyCQA/pylint/issues/3512
+      "logging-fstring-interpolation"
+  ]
+
 [tool.poetry]
 name = "backend"
 version = "0.1.0"
