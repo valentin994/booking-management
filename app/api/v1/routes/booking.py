@@ -1,7 +1,14 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
-router = APIRouter()
+from app.crud.crud import create_booking
+from app.database.db import get_db
+from app.schemas.booking import Booking
 
-@router.post("/")
-def add_booking():
-    pass
+
+router = APIRouter(prefix="/booking")
+
+
+@router.post("/", tags=["Booking"])
+def add_booking(booking: Booking, database: Session = Depends(get_db)):
+    return create_booking(database, booking)

@@ -1,6 +1,14 @@
-from fastapi import FastAPI, Request
-from .api.v1.router import router
 import time
+
+from fastapi import FastAPI, Request
+
+from .api.v1.router import router
+from .database.db import engine
+from .database.models import Base
+
+
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Vila Prgic",

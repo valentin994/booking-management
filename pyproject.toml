@@ -109,8 +109,9 @@ readme = "README.md"
 python = "^3.10"
 fastapi = "^0.78.0"
 pre-commit = "^2.19.0"
-SQLAlchemy = "^1.4.38"
 pylint = "^2.14.3"
+SQLAlchemy = "^1.4.39"
+uvicorn = "^0.18.1"
 
 
 [build-system]
