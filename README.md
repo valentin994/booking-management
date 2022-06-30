@@ -15,21 +15,16 @@ For the database SQLite will be used.
 
 ## Todos
 
-- Fix pylint warnings
-- Create Models Booking/Comments
-  - Booking Model
-        - Add apartment number, as there are several apartments
 - Create CRUD for Bookings
     - Create Booking
         - Ensure that the dates are atleast 2 days apart
         - Start date should be "smaller"
         - Ensure that the selected dates are free
-
 - Apartment model
 - Create Routes for Bookings
 - Create CRUD for Comments
 - Create Routes for Comments
-- Create Routes for aptgit
+- Create Routes for apt
 - Create Tests
 - Add tests and coverage to pre-commit
 - Add alembic

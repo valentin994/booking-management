@@ -1,5 +1,7 @@
 from fastapi import APIRouter
+
 from .routes.booking import router
+
 
 main_router = APIRouter()
 
