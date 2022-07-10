@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from .db import Base
@@ -11,7 +11,7 @@ class Booking(Base):
     start_date = Column(Date)
     end_date = Column(Date)
     apartment = Column(Integer)
-    comments = relationship("Comments")
+    comments = relationship("Comments", back_populates="booking")
 
 
 class Comments(Base):
@@ -20,3 +20,5 @@ class Comments(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(32))
     post = Column(String(128))
+    booking_id = Column(Integer, ForeignKey("booking.id"))
+    booking = relationship("Booking", back_populates="comments")

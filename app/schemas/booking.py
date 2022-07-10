@@ -17,3 +17,6 @@ class Comments(BaseModel):
     id: int
     name: str
     post: str
+
+    class Config:
+        orm_mode = True

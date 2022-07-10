@@ -11,8 +11,8 @@ Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
-    title="Vila Prgic",
-    description="Backend for Vila Prgic site",
+    title="Booking Management",
+    description="Booking backend",
     version="0.0.1",
 )
 

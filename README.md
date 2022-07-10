@@ -1,4 +1,4 @@
-# Vila Prgic
+# Booking Backend
 
 ## Introduction
 
@@ -21,6 +21,7 @@ For the database SQLite will be used.
         - Start date should be "smaller"
         - Ensure that the selected dates are free
 - Apartment model
+- Add exception handling
 - Create Routes for Bookings
 - Create CRUD for Comments
 - Create Routes for Comments
