@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from app.crud.crud import (
     create_booking,
     delete_booking_by_id,
     fetch_all_bookings,
+    get_booking_by_id,
 )
 from app.database.db import get_db
 from app.schemas.booking import Booking
@@ -13,7 +14,7 @@ from app.schemas.booking import Booking
 router = APIRouter(prefix="/booking", tags=["Booking"])
 
 
-@router.post("/", response_model=Booking)
+@router.post("/", response_model=Booking, status_code=status.HTTP_201_CREATED)
 def add_booking(
     booking: Booking, database: Session = Depends(get_db)
 ) -> Booking:
@@ -27,6 +28,15 @@ def get_all_bookings(
     return fetch_all_bookings(database, skip, limit)
 
 
+@router.get("/{booking_id}", response_model=Booking)
+def get_booking(
+    booking_id: int, database: Session = Depends(get_db)
+) -> Booking:
+    return get_booking_by_id(database, booking_id)
+
+
 @router.delete("/{booking_id}")
-def delete_booking(booking_id, database: Session = Depends(get_db)) -> dict:
+def delete_booking(
+    booking_id: int, database: Session = Depends(get_db)
+) -> dict:
     return delete_booking_by_id(database, booking_id)
