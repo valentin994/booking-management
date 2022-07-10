@@ -20,6 +20,8 @@ For the database SQLite will be used.
         - Ensure that the dates are atleast 2 days apart
         - Start date should be "smaller"
         - Ensure that the selected dates are free
+
+- Add admin panel
 - Apartment model
 - Add exception handling
 - Create Routes for Bookings
