@@ -29,6 +29,7 @@ For the database SQLite will be used.
 - Create Tests
 - Add tests and coverage to pre-commit
 - Add alembic
+- Add docstrings
 
 ## Possible enchantments
 

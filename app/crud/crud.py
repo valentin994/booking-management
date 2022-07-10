@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from ..database import models
@@ -18,3 +19,17 @@ def fetch_all_bookings(
     database: Session, skip: int = 0, limit: int = 100
 ) -> list[models.Booking]:
     return database.query(models.Booking).offset(skip).limit(limit).all()
+
+
+def delete_booking_by_id(database: Session, booking_id: int) -> dict:
+    # pylint: disable=W0143
+    booking_item = (
+        database.query(models.Booking)
+        .filter(models.Booking.id == booking_id)
+        .first()
+    )
+    if not booking_item:
+        raise HTTPException(404, f"Booking with id {booking_id} not found")
+    database.delete(booking_item)
+    database.commit()
+    return {"message": f"Deleted booking with id: {booking_id}"}

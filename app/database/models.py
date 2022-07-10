@@ -11,7 +11,12 @@ class Booking(Base):
     start_date = Column(Date)
     end_date = Column(Date)
     apartment = Column(Integer)
-    comments = relationship("Comments", back_populates="booking")
+    comments = relationship(
+        "Comments",
+        back_populates="booking",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
 
 
 class Comments(Base):
@@ -20,5 +25,5 @@ class Comments(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(32))
     post = Column(String(128))
-    booking_id = Column(Integer, ForeignKey("booking.id"))
+    booking_id = Column(Integer, ForeignKey("booking.id", ondelete="CASCADE"))
     booking = relationship("Booking", back_populates="comments")
