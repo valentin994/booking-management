@@ -11,6 +11,9 @@ class Booking(Base):
     start_date = Column(Date)
     end_date = Column(Date)
     apartment = Column(Integer)
+    email: Column(String)
+    # name: Column(String)
+    # phone: Column(Integer)
     comments = relationship(
         "Comments",
         back_populates="booking",

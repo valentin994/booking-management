@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class Booking(BaseModel):
@@ -8,6 +8,9 @@ class Booking(BaseModel):
     start_date: date
     end_date: date
     apartment: int
+    email: EmailStr
+    # name: str
+    # phone: int
 
     class Config:
         orm_mode = True

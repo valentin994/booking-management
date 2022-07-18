@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is the backend for Vila Prgic website, the site is used for renting out apartments.
+This is the backend for managing bookings, the site is used for renting out apartments.
 The API should support a booking and review system for the website to consume.
 For the database SQLite will be used.
 
@@ -15,12 +15,12 @@ For the database SQLite will be used.
 
 ## Todos
 
+- Update pre-commit for static folder (react app)
 - Create CRUD for Bookings
     - Create Booking
         - Ensure that the dates are atleast 2 days apart
         - Start date should be "smaller"
         - Ensure that the selected dates are free
-
 - Add admin panel
 - Apartment model
 - Add exception handling
@@ -30,8 +30,8 @@ For the database SQLite will be used.
 - Create Routes for apt
 - Create Tests
 - Add tests and coverage to pre-commit
-- Add alembic
 - Add docstrings
+- Add alembic
 
 ## Possible enchantments
 
