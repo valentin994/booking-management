@@ -8,16 +8,18 @@ from app.crud.crud import (
     get_booking_by_id,
 )
 from app.database.db import get_db
-from app.schemas.booking import Booking
+from app.database.models import Booking
 
 
 router = APIRouter(prefix="/booking", tags=["Booking"])
 
 
-@router.post("/", response_model=Booking, status_code=status.HTTP_201_CREATED)
-def add_booking(
-    booking: Booking, database: Session = Depends(get_db)
-) -> Booking:
+@router.post(
+    "/booking/",
+    response_model=Booking,
+    status_code=status.HTTP_201_CREATED,
+)
+def add_booking(*, booking: Booking, database: Session = Depends(get_db)):
     return create_booking(database, booking)
 
 

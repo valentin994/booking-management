@@ -1,32 +1,14 @@
-from sqlalchemy import Column, Date, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from datetime import date
 
-from .db import Base
-
-
-class Booking(Base):
-    __tablename__ = "booking"
-
-    id = Column(Integer, primary_key=True, index=True)
-    start_date = Column(Date)
-    end_date = Column(Date)
-    apartment = Column(Integer)
-    email: Column(String)
-    # name: Column(String)
-    # phone: Column(Integer)
-    comments = relationship(
-        "Comments",
-        back_populates="booking",
-        cascade="all, delete",
-        passive_deletes=True,
-    )
+from pydantic import EmailStr
+from sqlmodel import Field, SQLModel
 
 
-class Comments(Base):
-    __tablename__ = "comments"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(32))
-    post = Column(String(128))
-    booking_id = Column(Integer, ForeignKey("booking.id", ondelete="CASCADE"))
-    booking = relationship("Booking", back_populates="comments")
+class Booking(SQLModel, table=True):
+    id: int = Field(default=None, primary_key=True)
+    start_date: date
+    end_date: date
+    apartment: int
+    email: EmailStr
+    name: str
+    phone: int

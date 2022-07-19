@@ -112,6 +112,8 @@ pre-commit = "^2.19.0"
 pylint = "^2.14.3"
 SQLAlchemy = "^1.4.39"
 uvicorn = "^0.18.1"
+pydantic = {extras = ["email"], version = "^1.9.1"}
+sqlmodel = "^0.0.6"
 
 
 [build-system]

@@ -24,6 +24,7 @@ For the database SQLite will be used.
 - Add admin panel
 - Apartment model
 - Add exception handling
+- Add comments model
 - Create Routes for Bookings
 - Create CRUD for Comments
 - Create Routes for Comments

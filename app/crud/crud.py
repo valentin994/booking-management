@@ -2,14 +2,11 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from ..database import models
-from ..schemas import booking
+from app.database.models import Booking
 
 
-def create_booking(
-    database: Session, booking: booking.Booking
-) -> models.Booking:
-    db_booking = models.Booking(**booking.dict())
+def create_booking(database: Session, booking_data: Booking) -> Booking:
+    db_booking = Booking.from_orm(booking_data)
     database.add(db_booking)
     database.commit()
     database.refresh(db_booking)
@@ -18,15 +15,13 @@ def create_booking(
 
 def fetch_all_bookings(
     database: Session, skip: int = 0, limit: int = 100
-) -> list[models.Booking]:
-    return database.query(models.Booking).offset(skip).limit(limit).all()
+) -> list[Booking]:
+    return database.query(Booking).offset(skip).limit(limit).all()
 
 
-def get_booking_by_id(database: Session, booking_id: int) -> models.Booking:
+def get_booking_by_id(database: Session, booking_id: int) -> Booking:
     booking_item = (
-        database.query(models.Booking)
-        .filter(models.Booking.id == booking_id)
-        .first()
+        database.query(Booking).filter(Booking.id == booking_id).first()
     )
     if not booking_item:
         raise HTTPException(404, f"Booking with id {booking_id} not found!")
@@ -35,9 +30,7 @@ def get_booking_by_id(database: Session, booking_id: int) -> models.Booking:
 
 def delete_booking_by_id(database: Session, booking_id: int) -> dict:
     booking_item = (
-        database.query(models.Booking)
-        .filter(models.Booking.id == booking_id)
-        .first()
+        database.query(Booking).filter(Booking.id == booking_id).first()
     )
     if not booking_item:
         raise HTTPException(404, f"Booking with id {booking_id} not found!")
