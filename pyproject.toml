@@ -113,7 +113,10 @@ pylint = "^2.14.3"
 SQLAlchemy = "^1.4.39"
 uvicorn = "^0.18.1"
 pydantic = {extras = ["email"], version = "^1.9.1"}
+<<<<<<< HEAD
 sqlmodel = "^0.0.6"
+=======
+>>>>>>> 868b7821be46fc208810a24f9352fbb6a121cbe2
 
 
 [build-system]

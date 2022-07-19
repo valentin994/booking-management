@@ -78,7 +78,11 @@ python-versions = "*"
 name = "dnspython"
 version = "2.2.1"
 description = "DNS toolkit"
+<<<<<<< HEAD
 category = "dev"
+=======
+category = "main"
+>>>>>>> 868b7821be46fc208810a24f9352fbb6a121cbe2
 optional = false
 python-versions = ">=3.6,<4.0"
 
@@ -94,7 +98,11 @@ wmi = ["wmi (>=1.5.1,<2.0.0)"]
 name = "email-validator"
 version = "1.2.1"
 description = "A robust email syntax and deliverability validation library."
+<<<<<<< HEAD
 category = "dev"
+=======
+category = "main"
+>>>>>>> 868b7821be46fc208810a24f9352fbb6a121cbe2
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
@@ -166,7 +174,7 @@ license = ["ukkonen"]
 name = "idna"
 version = "3.3"
 description = "Internationalized Domain Names in Applications (IDNA)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -457,7 +465,11 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
+<<<<<<< HEAD
 content-hash = "f148157602a6ce66c744469b71d70fddfac6978424fa15f28c6fbc037dced712"
+=======
+content-hash = "902f61bfc3fe6f88d31fddee1c76114b99f890c5bca524466371bc7629c78039"
+>>>>>>> 868b7821be46fc208810a24f9352fbb6a121cbe2
 
 [metadata.files]
 anyio = [
