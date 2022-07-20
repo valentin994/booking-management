@@ -15,7 +15,10 @@ For the database SQLite will be used.
 
 ## Todos
 
+- Make a landing admin page
 - Update pre-commit for static folder (react app)
+- Add Batch delete possibility
+- Make a secure login for admin panel
 - Create CRUD for Bookings
     - Create Booking
         - Ensure that the dates are atleast 2 days apart
