@@ -17,7 +17,9 @@ function App() {
             type: 'number',
             width: 130,
         },
-
+        { field: "name", headerName: "Name", width: 130},
+        { field: "email", headerName: "email", width: 190},
+        { field: "phone", headerName: "Phone", width: 130}
     ];
 
     useEffect(() => {
