@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import axios from "axios";
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Box, Button } from "@mui/material";
+import { DataGrid, GridColDef, GridValueGetterParams, GridApi, GridCellValue } from '@mui/x-data-grid';
 
 function App() {
     const [count, setCount] = useState(0)
@@ -19,7 +20,31 @@ function App() {
         },
         { field: "name", headerName: "Name", width: 130},
         { field: "email", headerName: "email", width: 190},
-        { field: "phone", headerName: "Phone", width: 130}
+        { field: "phone", headerName: "Phone", width: 130},
+        {
+            field: 'action',
+            headerName: 'Action',
+            sortable: false,
+            renderCell: (params) => {
+                const onClick = (e) => {
+                    e.stopPropagation(); // don't select this row after clicking
+
+                    const api: GridApi = params.api;
+                    const thisRow: Record<string, GridCellValue> = {};
+
+                    api
+                        .getAllColumns()
+                        .filter((c) => c.field !== '__check__' && !!c)
+                        .forEach(
+                            (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+                        );
+
+                    return alert(JSON.stringify(thisRow, null, 4));
+                };
+
+                return <Button onClick={onClick}>Remove</Button>;
+            }
+        }
     ];
 
     useEffect(() => {
@@ -30,14 +55,16 @@ function App() {
     }, [])
 
   return (
-      <div style={{ height: 400, width: '100%' }}>
-          <DataGrid
-              rows={booking}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-          />
+      <div>
+        <Box style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                rows={booking}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+            />
+        </Box>
       </div>
   )
 }
