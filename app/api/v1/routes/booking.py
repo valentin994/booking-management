@@ -20,7 +20,6 @@ router = APIRouter(prefix="/booking", tags=["Booking"])
     status_code=status.HTTP_201_CREATED,
 )
 def add_booking(booking: Booking, database: Session = Depends(get_db)):
-    print(booking)
     return create_booking(database, booking)
 
 
