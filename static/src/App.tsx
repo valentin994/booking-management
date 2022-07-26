@@ -3,9 +3,9 @@ import './App.css'
 import axios from "axios";
 import { Box, Button } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams, GridApi, GridCellValue } from '@mui/x-data-grid';
+import { v4 as uuidv4 } from "uuid"
 
 function App() {
-    const [count, setCount] = useState(0)
     const [booking, setBooking] = useState([])
 
     const columns: GridColDef[] = [
@@ -47,24 +47,43 @@ function App() {
         }
     ];
 
+    const onAdd = () => {
+        const event = "2022-01-01";
+        const data = { 'id': uuidv4(),
+            'start_date': '2022-07-26',
+            'end_date': '2022-07-26',
+            'apartment': 0,
+            'email': 'user@example.com',
+            'name': 'string',
+            'phone': 0}
+        axios.post("http://localhost:8000/api/v1/booking/booking/", data).then(res => {
+            setBooking((booking) => [...booking, res.data])
+            console.log(res);
+        })
+    }
+
     useEffect(() => {
         axios.get("http://localhost:8000/api/v1/booking").then(res => {
             setBooking(res.data);
-            console.log(booking);
         })
     }, [])
 
   return (
       <div>
-        <Box style={{ height: 400, width: '100%' }}>
+          <Box sx={{ width: '100%' }}>
+        <Box sx={{ height: 720, width: '100%', mb: 1}}>
             <DataGrid
                 rows={booking}
                 columns={columns}
-                pageSize={5}
+                pageSize={10}
                 rowsPerPageOptions={[5]}
                 checkboxSelection
             />
         </Box>
+          <Button variant="contained" onClick={onAdd}>
+              Add
+          </Button>
+          </Box>
       </div>
   )
 }
