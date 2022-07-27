@@ -4,6 +4,7 @@ import axios from "axios";
 import { Box, Button } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { v4 as uuidv4 } from "uuid"
+import Navbar from "./components/Navbar";
 
 function App() {
     const [booking, setBooking] = useState([])
@@ -70,8 +71,9 @@ function App() {
 
   return (
       <div>
+          <Navbar></Navbar>
           <Box sx={{ width: '100%' }}>
-        <Box sx={{ height: 720, width: '100%', mb: 1}}>
+        <Box sx={{ height: 720}}>
             <DataGrid
                 rows={booking}
                 columns={columns}
