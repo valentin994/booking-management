@@ -1,13 +1,13 @@
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import {IconButton, Toolbar, Typography} from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
+import AppBar from '@mui/material/AppBar'
+import Container from '@mui/material/Container'
+import { IconButton, Toolbar, Typography } from '@mui/material'
+import LogoutIcon from '@mui/icons-material/Logout'
 
-function Navbar(){
-    const onLogout = () => {
-        console.log("logout")
-    }
-    return(
+function Navbar () {
+  const onLogout = () => {
+    console.log('logout')
+  }
+  return (
     <AppBar position="static">
         <Container maxWidth="xl">
             <Toolbar disableGutters>
@@ -20,7 +20,7 @@ function Navbar(){
             </Toolbar>
         </Container>
     </AppBar>
-    )
+  )
 }
 
 export default Navbar
