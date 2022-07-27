@@ -18,7 +18,6 @@ For the database SQLite will be used.
 - Make a landing admin page
   - Separate into components
   - Update Design
-  - Add theme
 - Update pre-commit for static folder (react app)
 - Add Batch delete possibility
 - Make a secure login for admin panel
