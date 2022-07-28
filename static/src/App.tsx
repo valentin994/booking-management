@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
-import { Box, Button, CssBaseline } from '@mui/material'
+import { Box, Button, CssBaseline, Container } from '@mui/material'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
 import { v4 as uuidv4 } from 'uuid'
 import Navbar from './components/Navbar'
+import BookingTable from './components/BookingTable'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const light = {
@@ -24,7 +25,7 @@ function App () {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 130 },
     { field: 'start_date', headerName: 'Start Date', width: 130 },
     { field: 'end_date', headerName: 'End Date', width: 130 },
     {
@@ -89,7 +90,8 @@ function App () {
         <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
           <CssBaseline />
           <Navbar theme={isDarkTheme} changeTheme={setIsDarkTheme}></Navbar>
-          <Box sx={{ width: '100%' }}>
+          <Box p={4} m={4}>
+            <Container>
         <Box sx={{ height: 720 }}>
             <DataGrid
                 rows={booking}
@@ -102,6 +104,7 @@ function App () {
           <Button variant="contained" onClick={onAdd}>
               Add
           </Button>
+            </Container>
           </Box>
         </ThemeProvider>
       </div>

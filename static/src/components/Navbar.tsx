@@ -5,11 +5,11 @@ import LogoutIcon from '@mui/icons-material/Logout'
 
 function Navbar (props: any) {
   const onLogout = () => {
-    console.log("logout")
+    console.log('logout')
   }
 
   const onThemeChange = () => {
-      props.changeTheme(!props.theme)
+    props.changeTheme(!props.theme)
   }
   return (
     <AppBar position="static">
