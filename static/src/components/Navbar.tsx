@@ -1,11 +1,15 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
-import { IconButton, Toolbar, Typography } from '@mui/material'
+import { IconButton, Switch, Toolbar, Typography } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout'
 
-function Navbar () {
+function Navbar (props: any) {
   const onLogout = () => {
-    console.log('logout')
+    console.log("logout")
+  }
+
+  const onThemeChange = () => {
+      props.changeTheme(!props.theme)
   }
   return (
     <AppBar position="static">
@@ -14,6 +18,7 @@ function Navbar () {
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                     Booking Management
                 </Typography>
+                <Switch onClick={onThemeChange} />
                 <IconButton color="inherit" onClick={onLogout}>
                     <LogoutIcon />
                 </IconButton>

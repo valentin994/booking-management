@@ -5,7 +5,7 @@ import { Box, Button, CssBaseline } from '@mui/material'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid'
 import { v4 as uuidv4 } from 'uuid'
 import Navbar from './components/Navbar'
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const light = {
   palette: {
@@ -22,9 +22,6 @@ const dark = {
 function App () {
   const [booking, setBooking] = useState([])
   const [isDarkTheme, setIsDarkTheme] = useState(false)
-  const changeTheme = () => {
-    setIsDarkTheme(!isDarkTheme)
-  }
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -91,8 +88,7 @@ function App () {
       <div>
         <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
           <CssBaseline />
-          <Navbar></Navbar>
-          <button onClick={changeTheme}>switch</button>
+          <Navbar theme={isDarkTheme} changeTheme={setIsDarkTheme}></Navbar>
           <Box sx={{ width: '100%' }}>
         <Box sx={{ height: 720 }}>
             <DataGrid
