@@ -90,6 +90,7 @@ function App () {
         <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
           <CssBaseline />
           <Navbar theme={isDarkTheme} changeTheme={setIsDarkTheme}></Navbar>
+          <BookingTable />
           <Box p={4} m={4}>
             <Container>
         <Box sx={{ height: 720 }}>
