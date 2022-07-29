@@ -13,13 +13,18 @@ const getBookings = () => {
   axiosClient.get<Array<Booking>>('/api/v1/booking/').then(res => {
     return res.data
   }).catch(err => {
-    console.log('Unexpected error occured', err)
+    console.log('Unexpected error occurred ', err)
     return err
   })
 }
 
 const addBooking = (booking: Booking) => {
-  console.log(booking)
+  axiosClient.post<Booking>('/api/v1/booking/', booking).then(res => {
+    return res.data
+  }).catch(err => {
+    console.log('Unexpected error occurred ', err)
+    return err
+  })
 }
 
 const deleteBooking = () => {
