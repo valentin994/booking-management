@@ -9,13 +9,13 @@ const axiosClient = axios.create({
   }
 })
 
-const getBookings = () => {
-  axiosClient.get<Array<Booking>>('/api/v1/booking/').then(res => {
-    return res.data
-  }).catch(err => {
-    console.log('Unexpected error occurred ', err)
-    return err
-  })
+const getBookings = async () => {
+  try {
+    const { data } = await axiosClient.get<Array<Booking>>('/api/v1/booking/')
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const addBooking = (booking: Booking) => {
