@@ -25,7 +25,7 @@ function BookingTable (props: Props) {
       headerName: 'Action',
       sortable: false,
       renderCell: (params) => {
-        const onClick = (e) => {
+        const onClick = (e: { stopPropagation: () => void }) => {
           e.stopPropagation() // don't select this row after clicking
 
           const api: GridApi = params.api

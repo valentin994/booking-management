@@ -8,6 +8,7 @@ import BookingTable from './components/BookingTable'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Booking } from './interfaces/Booking'
 import { getBookings } from './api/api'
+import AddBookingDialog from "./components/AddBookingDialog";
 
 const light = {
   palette: {
@@ -56,6 +57,7 @@ function App () {
           <Box>
             <Container>
           <BookingTable booking={booking} />
+              <AddBookingDialog />
               <Button variant="contained" onClick={onAdd}>
                 Add
               </Button>
