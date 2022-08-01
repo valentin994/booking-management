@@ -15,10 +15,6 @@ For the database SQLite will be used.
 
 ## Todos
 
-- Make a landing admin page
-  - Separate into components
-  - Update Design
-- Update pre-commit for static folder (react app)
 - Github Actions
 - Add Batch delete possibility
 - Make a secure login for admin panel
@@ -35,8 +31,6 @@ For the database SQLite will be used.
 - Create CRUD for Comments
 - Create Routes for Comments
 - Create Routes for apt
-- Create Tests
-- Add tests and coverage to pre-commit
 - Add docstrings
 - Add alembic
 
