@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,19 +7,16 @@ import {
   TextField,
   Container,
   Box,
-  InputLabel,
-  FormControl,
-  Input,
   MenuItem,
   Stack,
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { Booking } from "../interfaces/Booking";
 
 function AddBookingDialog() {
   const [open, setOpen] = useState<boolean>(false);
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [booking, setBooking] = useState<Partial<Booking>>({});
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -42,6 +39,9 @@ function AddBookingDialog() {
                 label="Name"
                 type="text"
                 variant="standard"
+                onChange={(e) =>
+                  setBooking({ ...booking, name: e.target.value })
+                }
                 fullWidth
               />
               <TextField
@@ -50,6 +50,9 @@ function AddBookingDialog() {
                 label="Email"
                 type="email"
                 variant="standard"
+                onChange={(e) =>
+                  setBooking({ ...booking, email: e.target.value })
+                }
                 fullWidth
               />
             </Stack>
@@ -60,6 +63,9 @@ function AddBookingDialog() {
                 label="Number"
                 inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                 variant="standard"
+                onChange={(e) =>
+                  setBooking({ ...booking, phone: e.target.value })
+                }
                 fullWidth
               />
               <TextField
@@ -68,6 +74,9 @@ function AddBookingDialog() {
                 label="Apt"
                 select
                 variant="standard"
+                onChange={(e) =>
+                  setBooking({ ...booking, apartment: Number(e.target.value) })
+                }
                 sx={{ width: "20%" }}
               >
                 <MenuItem>1</MenuItem>
@@ -78,19 +87,22 @@ function AddBookingDialog() {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   label="Start Date"
-                  value={startDate}
+                  value={Date.now().toLocaleString("en-GB").split(" ")[0]}
                   onChange={(newValue) => {
-                    setStartDate(newValue);
+                    console.log(newValue);
+                    console.log(newValue.toString());
+                    console.log(newValue.toLocaleString("en-GB").split(" ")[0]);
+                    setBooking({ ...booking, startDate: Date(newValue) });
                   }}
                   renderInput={(params) => <TextField {...params} />}
                   inputFormat="dd/mm/yyyy"
                 />
                 <DatePicker
                   label="End Date"
-                  value={endDate}
-                  onChange={(newValue) => {
-                    setEndDate(newValue);
-                  }}
+                  value=""
+                  onChange={(newValue) =>
+                    setBooking({ ...booking, endDate: newValue })
+                  }
                   renderInput={(params) => <TextField {...params} />}
                   inputFormat="dd/mm/yyyy"
                 />
