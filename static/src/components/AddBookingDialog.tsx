@@ -13,16 +13,27 @@ import {
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { Booking } from "../interfaces/Booking";
+import { hr } from "date-fns/locale";
 
 function AddBookingDialog() {
   const [open, setOpen] = useState<boolean>(false);
-  const [booking, setBooking] = useState<Partial<Booking>>({});
+  const [booking, setBooking] = useState<Partial<Booking>>({
+    startDate: new Date(),
+    endDate: new Date(),
+    apartment: 1
+  });
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    console.log(booking);
+    // setOpen(false);
   };
+  const [datePickerValue, setDatePickerValue] = useState<Date | null>(
+    new Date()
+  );
+  const aptArray = [1, 2, 3];
+  // @ts-ignore
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -74,37 +85,39 @@ function AddBookingDialog() {
                 label="Apt"
                 select
                 variant="standard"
-                onChange={(e) =>
-                  setBooking({ ...booking, apartment: Number(e.target.value) })
-                }
+                value={booking.apartment}
+                onChange={(e) => {
+                  console.log(booking);
+                  setBooking({ ...booking, apartment: Number(e.target.value) });
+                }}
                 sx={{ width: "20%" }}
               >
-                <MenuItem>1</MenuItem>
-                <MenuItem>2</MenuItem>
+                {aptArray.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                ))}
               </TextField>
             </Stack>
             <Stack direction="row" spacing={2} pt={2} pb={2}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+                adapterLocale={hr}
+              >
                 <DatePicker
-                  label="Start Date"
-                  value={Date.now().toLocaleString("en-GB").split(" ")[0]}
-                  onChange={(newValue) => {
-                    console.log(newValue);
-                    console.log(newValue.toString());
-                    console.log(newValue.toLocaleString("en-GB").split(" ")[0]);
-                    setBooking({ ...booking, startDate: Date(newValue) });
-                  }}
+                  value={booking.startDate}
+                  onChange={(newValue) =>
+                    setBooking({ ...booking, startDate: newValue })
+                  }
                   renderInput={(params) => <TextField {...params} />}
-                  inputFormat="dd/mm/yyyy"
-                />
+                />{" "}
                 <DatePicker
                   label="End Date"
-                  value=""
+                  value={booking.endDate}
                   onChange={(newValue) =>
                     setBooking({ ...booking, endDate: newValue })
                   }
                   renderInput={(params) => <TextField {...params} />}
-                  inputFormat="dd/mm/yyyy"
                 />
               </LocalizationProvider>
             </Stack>
