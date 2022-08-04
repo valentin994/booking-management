@@ -27,8 +27,13 @@ const addBooking = async(booking: Booking) => {
   }
 }
 
-const deleteBooking = () => {
-  console.log('delete booking')
+const deleteBooking = async(id: string) => {
+  try {
+    const { data } = await axios.delete(`/api/v1/booking/${id}`)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export {
