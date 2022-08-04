@@ -15,8 +15,6 @@ For the database SQLite will be used.
 
 ## Todos
 
-- Github Actions
-- Add Batch delete possibility
 - Make a secure login for admin panel
 - Create CRUD for Bookings
     - Create Booking

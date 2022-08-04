@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import {
   Button,
   Dialog,
@@ -18,8 +18,9 @@ import { addBooking } from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 
 type Props = {
-  booking: Array<Booking>
-}
+  booking: Array<Booking>;
+  setBooking: React.Dispatch<React.SetStateAction<any>>;
+};
 
 function AddBookingDialog(props: Props) {
   const [open, setOpen] = useState<boolean>(false);
@@ -37,7 +38,7 @@ function AddBookingDialog(props: Props) {
   };
   const handleAddBooking = () => {
     addBooking(booking).then((res) => {
-      props.
+      props.setBooking([...props.booking, res])
     });
     setOpen(false);
   };
@@ -132,7 +133,7 @@ function AddBookingDialog(props: Props) {
             </Stack>
           </Container>
           <DialogActions>
-            <Button onClick={()=>setOpen(false)}>Cancel</Button>
+            <Button onClick={() => setOpen(false)}>Cancel</Button>
             <Button onClick={handleAddBooking}>Submit</Button>
           </DialogActions>
         </Box>

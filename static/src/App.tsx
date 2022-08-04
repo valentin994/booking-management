@@ -16,7 +16,7 @@ const light = {
 
 const dark = {
   palette: {
-    mode: "dark",
+    mode: 'dark',
   },
 };
 
@@ -40,7 +40,7 @@ function App() {
         <Box>
           <Container>
             <BookingTable booking={booking} />
-            <AddBookingDialog lBooking={booking} sBooking={setBooking} />
+            <AddBookingDialog booking={booking} setBooking={setBooking} />
           </Container>
         </Box>
       </ThemeProvider>
