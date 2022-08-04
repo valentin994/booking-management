@@ -14,24 +14,33 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { Booking } from "../interfaces/Booking";
 import { hr } from "date-fns/locale";
+import { addBooking } from "../api/api";
+import { v4 as uuidv4 } from "uuid";
 
-function AddBookingDialog() {
+type Props = {
+  booking: Array<Booking>
+}
+
+function AddBookingDialog(props: Props) {
   const [open, setOpen] = useState<boolean>(false);
-  const [booking, setBooking] = useState<Partial<Booking>>({
+  const [booking, setBooking] = useState<Booking>({
+    id: uuidv4(),
+    name: "",
+    phone: "",
+    email: "",
     startDate: new Date(),
     endDate: new Date(),
-    apartment: 1
+    apartment: 1,
   });
   const handleClickOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
-    console.log(booking);
-    // setOpen(false);
+  const handleAddBooking = () => {
+    addBooking(booking).then((res) => {
+      props.
+    });
+    setOpen(false);
   };
-  const [datePickerValue, setDatePickerValue] = useState<Date | null>(
-    new Date()
-  );
   const aptArray = [1, 2, 3];
   // @ts-ignore
   return (
@@ -39,7 +48,7 @@ function AddBookingDialog() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Add
       </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="xs">
+      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="xs">
         <Box p={4} pb={2}>
           <DialogTitle>Add Booking</DialogTitle>
           <Container>
@@ -93,9 +102,9 @@ function AddBookingDialog() {
                 sx={{ width: "20%" }}
               >
                 {aptArray.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
                 ))}
               </TextField>
             </Stack>
@@ -123,8 +132,8 @@ function AddBookingDialog() {
             </Stack>
           </Container>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Submit</Button>
+            <Button onClick={()=>setOpen(false)}>Cancel</Button>
+            <Button onClick={handleAddBooking}>Submit</Button>
           </DialogActions>
         </Box>
       </Dialog>

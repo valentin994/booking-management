@@ -9,8 +9,8 @@ type Props = {
 function BookingTable (props: Props) {
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 130 },
-    { field: 'start_date', headerName: 'Start Date', width: 130 },
-    { field: 'end_date', headerName: 'End Date', width: 130 },
+    { field: 'startDate', headerName: 'Start Date', width: 130 },
+    { field: 'endDate', headerName: 'End Date', width: 130 },
     {
       field: 'apartment',
       headerName: 'Apartment',

@@ -18,13 +18,13 @@ const getBookings = async () => {
   }
 }
 
-const addBooking = (booking: Booking) => {
-  axiosClient.post<Booking>('/api/v1/booking/', booking).then(res => {
-    return res.data
-  }).catch(err => {
-    console.log('Unexpected error occurred ', err)
-    return err
-  })
+const addBooking = async(booking: Booking) => {
+  try {
+    const { data } = await axiosClient.post<Booking>('/api/v1/booking/', booking)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const deleteBooking = () => {

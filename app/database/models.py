@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 from pydantic import EmailStr
 from sqlmodel import Field, SQLModel
@@ -6,8 +6,8 @@ from sqlmodel import Field, SQLModel
 
 class Booking(SQLModel, table=True):
     id: str = Field(default=None, primary_key=True)
-    start_date: date
-    end_date: date
+    startDate: datetime
+    endDate: datetime
     apartment: int
     email: EmailStr
     name: str

@@ -15,7 +15,7 @@ router = APIRouter(prefix="/booking", tags=["Booking"])
 
 
 @router.post(
-    "/booking/",
+    "/",
     response_model=Booking,
     status_code=status.HTTP_201_CREATED,
 )
