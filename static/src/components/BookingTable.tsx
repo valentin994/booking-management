@@ -1,63 +1,57 @@
-import { Booking } from '../interfaces/Booking'
-import { DataGrid, GridApi, GridCellValue, GridColDef } from '@mui/x-data-grid'
-import { Box, Button } from '@mui/material'
+import { Booking } from "../interfaces/Booking";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Box, Button, Alert, Collapse } from "@mui/material";
+import { IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import { deleteBooking } from "../api/api";
+import { useState } from "react";
 
 type Props = {
-    booking: Array<Booking>
-}
+  booking: Array<Booking>;
+};
 
-function BookingTable (props: Props) {
+function BookingTable(props: Props) {
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 130 },
-    { field: 'startDate', headerName: 'Start Date', width: 130 },
-    { field: 'endDate', headerName: 'End Date', width: 130 },
+    { field: "id", headerName: "ID", width: 130 },
+    { field: "startDate", headerName: "Start Date", width: 130 },
+    { field: "endDate", headerName: "End Date", width: 130 },
     {
-      field: 'apartment',
-      headerName: 'Apartment',
-      type: 'number',
-      width: 130
+      field: "apartment",
+      headerName: "Apartment",
+      type: "number",
+      width: 130,
     },
-    { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'email', headerName: 'email', width: 190 },
-    { field: 'phone', headerName: 'Phone', width: 130 },
+    { field: "name", headerName: "Name", width: 130 },
+    { field: "email", headerName: "email", width: 190 },
+    { field: "phone", headerName: "Phone", width: 130 },
     {
-      field: 'action',
-      headerName: 'Action',
+      field: "action",
+      headerName: "Action",
       sortable: false,
       renderCell: (params) => {
-        const onClick = (e: { stopPropagation: () => void }) => {
-          e.stopPropagation() // don't select this row after clicking
+        const handleRemoveBooking = (e: { stopPropagation: () => void }) => {
+          e.stopPropagation(); // don't select this row after clicking
+          // deleteBooking(params.row.id).then((res) => {
+          //   console.log(res);
+          // });
+          console.log(params.row.id);
+        };
 
-          const api: GridApi = params.api
-          const thisRow: Record<string, GridCellValue> = {}
-
-          api
-            .getAllColumns()
-            .filter((c) => c.field !== '__check__' && !!c)
-            .forEach(
-              (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-            )
-
-          return alert(JSON.stringify(thisRow, null, 4))
-        }
-
-        return <Button onClick={onClick}>Remove</Button>
-      }
-    }
-  ]
-
+        return <Button onClick={handleRemoveBooking}>Remove</Button>;
+      },
+    },
+  ];
   return (
-        <div>
-            <Box sx={{ height: 720 }}>
-                <DataGrid
-                    rows={props.booking}
-                    columns={columns}
-                    pageSize={10}
-                    rowsPerPageOptions={[5]}
-                    checkboxSelection
-                />
-            </Box>
-        </div>
-  )
+    <div>
+      <Box sx={{ height: 720 }}>
+        <DataGrid
+          rows={props.booking}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[5]}
+        />
+      </Box>
+    </div>
+  );
 }
-export default BookingTable
+export default BookingTable;
