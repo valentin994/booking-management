@@ -39,7 +39,7 @@ function App() {
         <Navbar theme={isDarkTheme} changeTheme={setIsDarkTheme} />
         <Box>
           <Container>
-            <BookingTable booking={booking} />
+            <BookingTable booking={booking} setBooking={setBooking} />
             <AddBookingDialog booking={booking} setBooking={setBooking} />
           </Container>
         </Box>

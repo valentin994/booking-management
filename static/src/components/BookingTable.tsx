@@ -1,13 +1,12 @@
 import { Booking } from "../interfaces/Booking";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Box, Button, Alert, Collapse } from "@mui/material";
-import { IconButton } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Alert, Snackbar } from "@mui/material";
 import { deleteBooking } from "../api/api";
-import { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
 
 type Props = {
   booking: Array<Booking>;
+  setBooking: React.Dispatch<React.SetStateAction<any>>;
 };
 
 function BookingTable(props: Props) {
@@ -31,18 +30,48 @@ function BookingTable(props: Props) {
       renderCell: (params) => {
         const handleRemoveBooking = (e: { stopPropagation: () => void }) => {
           e.stopPropagation(); // don't select this row after clicking
-          // deleteBooking(params.row.id).then((res) => {
-          //   console.log(res);
-          // });
-          console.log(params.row.id);
+          deleteBooking(params.row.id)
+            .then(() => {
+              props.setBooking(
+                props.booking.filter(
+                  (bookingItem) => bookingItem.id !== params.row.id
+                )
+              );
+              setOpen(true);
+            })
+            .catch(() => {
+              setOpenError(true)
+              console.log(params.row.id);
+            });
         };
 
         return <Button onClick={handleRemoveBooking}>Remove</Button>;
       },
     },
   ];
+  const [open, setOpen] = useState(false);
+  const [openError, setOpenError] = useState(false);
+
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+    setOpenError(false)
+  };
   return (
     <div>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Successfully deleted booking!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={openError} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Couldn't delete booking!
+        </Alert>
+      </Snackbar>
+
       <Box sx={{ height: 720 }}>
         <DataGrid
           rows={props.booking}
