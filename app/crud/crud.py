@@ -19,7 +19,7 @@ def fetch_all_bookings(
     return database.query(Booking).offset(skip).limit(limit).all()
 
 
-def get_booking_by_id(database: Session, booking_id: int) -> Booking:
+def get_booking_by_id(database: Session, booking_id: str) -> Booking:
     booking_item = (
         database.query(Booking).filter(Booking.id == booking_id).first()
     )
@@ -28,7 +28,7 @@ def get_booking_by_id(database: Session, booking_id: int) -> Booking:
     return booking_item
 
 
-def delete_booking_by_id(database: Session, booking_id: int) -> dict:
+def delete_booking_by_id(database: Session, booking_id: str) -> dict:
     booking_item = (
         database.query(Booking).filter(Booking.id == booking_id).first()
     )

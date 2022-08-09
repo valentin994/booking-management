@@ -30,15 +30,15 @@ def get_all_bookings(
     return fetch_all_bookings(database, skip, limit)
 
 
-@router.get("/{booking_id}", response_model=Booking)
+@router.get("/{booking_id}/", response_model=Booking)
 def get_booking(
-    booking_id: int, database: Session = Depends(get_db)
+    booking_id: str, database: Session = Depends(get_db)
 ) -> Booking:
     return get_booking_by_id(database, booking_id)
 
 
-@router.delete("/{booking_id}")
+@router.delete("/{booking_id}/")
 def delete_booking(
-    booking_id: int, database: Session = Depends(get_db)
+    booking_id: str, database: Session = Depends(get_db)
 ) -> dict:
     return delete_booking_by_id(database, booking_id)
