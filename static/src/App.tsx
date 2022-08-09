@@ -1,34 +1,34 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import { Box, CssBaseline, Container } from "@mui/material";
-import Navbar from "./components/Navbar";
-import BookingTable from "./components/BookingTable";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Booking } from "./interfaces/Booking";
-import { getBookings } from "./api/api";
-import AddBookingDialog from "./components/AddBookingDialog";
+import { useState, useEffect } from 'react'
+import './App.css'
+import { Box, CssBaseline, Container } from '@mui/material'
+import Navbar from './components/Navbar'
+import BookingTable from './components/BookingTable'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { Booking } from './interfaces/Booking'
+import { getBookings } from './api/api'
+import AddBookingDialog from './components/AddBookingDialog'
 
 const light = {
   palette: {
-    mode: "light",
-  },
-};
+    mode: 'light'
+  }
+}
 
 const dark = {
   palette: {
-    mode: 'dark',
-  },
-};
+    mode: 'dark'
+  }
+}
 
-function App() {
-  const [booking, setBooking] = useState<Array<Booking> | any>([]);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+function App () {
+  const [booking, setBooking] = useState<Array<Booking> | any>([])
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   useEffect(() => {
     getBookings().then((res) => {
-      setBooking(res);
-    });
-  }, []);
+      setBooking(res)
+    })
+  }, [])
 
   return (
     <div>
@@ -45,7 +45,7 @@ function App() {
         </Box>
       </ThemeProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

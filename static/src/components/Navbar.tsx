@@ -13,17 +13,17 @@ function Navbar (props: any) {
   }
   return (
     <AppBar position="static">
-        <Container maxWidth="xl">
-            <Toolbar disableGutters>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                    Booking Management
-                </Typography>
-                <Switch onClick={onThemeChange} />
-                <IconButton color="inherit" onClick={onLogout}>
-                    <LogoutIcon />
-                </IconButton>
-            </Toolbar>
-        </Container>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Booking Management
+          </Typography>
+          <Switch onClick={onThemeChange} />
+          <IconButton color="inherit" onClick={onLogout}>
+            <LogoutIcon />
+          </IconButton>
+        </Toolbar>
+      </Container>
     </AppBar>
   )
 }

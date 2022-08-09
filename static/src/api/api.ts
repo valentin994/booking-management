@@ -18,16 +18,19 @@ const getBookings = async () => {
   }
 }
 
-const addBooking = async(booking: Booking) => {
+const addBooking = async (booking: Booking) => {
   try {
-    const { data } = await axiosClient.post<Booking>('/api/v1/booking/', booking)
+    const { data } = await axiosClient.post<Booking>(
+      '/api/v1/booking/',
+      booking
+    )
     return data
   } catch (error) {
     console.log(error)
   }
 }
 
-const deleteBooking = async(id: string) => {
+const deleteBooking = async (id: string) => {
   try {
     const { data } = await axios.delete(`/api/v1/booking/${id}`)
     return data
@@ -36,8 +39,4 @@ const deleteBooking = async(id: string) => {
   }
 }
 
-export {
-  getBookings,
-  addBooking,
-  deleteBooking
-}
+export { getBookings, addBooking, deleteBooking }

@@ -101,7 +101,7 @@ profile = "black"
 [tool.poetry]
 name = "backend"
 version = "0.1.0"
-description = "Backend for Prgic Vila"
+description = "Backend for Booking Management"
 authors = ["Valentin Vareskic"]
 readme = "README.md"
 
@@ -114,6 +114,8 @@ SQLAlchemy = "^1.4.39"
 uvicorn = "^0.18.1"
 pydantic = {extras = ["email"], version = "^1.9.1"}
 sqlmodel = "^0.0.6"
+pyparsing = "^3.0.9"
+certifi = "^2022.6.15"
 
 
 [build-system]

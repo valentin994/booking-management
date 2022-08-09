@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from 'react'
 import {
   Button,
   Dialog,
@@ -8,41 +8,41 @@ import {
   Container,
   Box,
   MenuItem,
-  Stack,
-} from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { Booking } from "../interfaces/Booking";
-import { hr } from "date-fns/locale";
-import { addBooking } from "../api/api";
-import { v4 as uuidv4 } from "uuid";
+  Stack
+} from '@mui/material'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { Booking } from '../interfaces/Booking'
+import { hr } from 'date-fns/locale'
+import { addBooking } from '../api/api'
+import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
   booking: Array<Booking>;
   setBooking: React.Dispatch<React.SetStateAction<any>>;
 };
 
-function AddBookingDialog(props: Props) {
-  const [open, setOpen] = useState<boolean>(false);
+function AddBookingDialog (props: Props) {
+  const [open, setOpen] = useState<boolean>(false)
   const [booking, setBooking] = useState<Booking>({
     id: uuidv4(),
-    name: "",
-    phone: "",
-    email: "",
+    name: '',
+    phone: '',
+    email: '',
     startDate: new Date(),
     endDate: new Date(),
-    apartment: 1,
-  });
+    apartment: 1
+  })
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
   const handleAddBooking = () => {
     addBooking(booking).then((res) => {
       props.setBooking([...props.booking, res])
-    });
-    setOpen(false);
-  };
-  const aptArray = [1, 2, 3];
+    })
+    setOpen(false)
+  }
+  const aptArray = [1, 2, 3]
   // @ts-ignore
   return (
     <div>
@@ -82,7 +82,7 @@ function AddBookingDialog(props: Props) {
                 autoFocus
                 id="number"
                 label="Number"
-                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                 variant="standard"
                 onChange={(e) =>
                   setBooking({ ...booking, phone: e.target.value })
@@ -97,10 +97,10 @@ function AddBookingDialog(props: Props) {
                 variant="standard"
                 value={booking.apartment}
                 onChange={(e) => {
-                  console.log(booking);
-                  setBooking({ ...booking, apartment: Number(e.target.value) });
+                  console.log(booking)
+                  setBooking({ ...booking, apartment: Number(e.target.value) })
                 }}
-                sx={{ width: "20%" }}
+                sx={{ width: '20%' }}
               >
                 {aptArray.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -120,7 +120,7 @@ function AddBookingDialog(props: Props) {
                     setBooking({ ...booking, startDate: newValue })
                   }
                   renderInput={(params) => <TextField {...params} />}
-                />{" "}
+                />{' '}
                 <DatePicker
                   label="End Date"
                   value={booking.endDate}
@@ -139,7 +139,7 @@ function AddBookingDialog(props: Props) {
         </Box>
       </Dialog>
     </div>
-  );
+  )
 }
 
-export default AddBookingDialog;
+export default AddBookingDialog

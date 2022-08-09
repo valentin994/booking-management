@@ -17,10 +17,10 @@ For the database SQLite will be used.
 
 - Make a secure login for admin panel
 - Create CRUD for Bookings
-    - Create Booking
-        - Ensure that the dates are atleast 2 days apart
-        - Start date should be "smaller"
-        - Ensure that the selected dates are free
+  - Create Booking
+    - Ensure that the dates are atleast 2 days apart
+    - Start date should be "smaller"
+    - Ensure that the selected dates are free
 - Add admin panel
 - Apartment model
 - Add exception handling
