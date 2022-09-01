@@ -1,4 +1,5 @@
 import { rest } from 'msw'
+import React from 'react'
 import { expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import App from './App'
@@ -22,5 +23,5 @@ export const handlers = [
 
 it('Should return all bookings fetched from the API', async () => {
   render(<App />)
-  expect(screen)
+  expect(screen.getByText('Booking Management'))
 })
